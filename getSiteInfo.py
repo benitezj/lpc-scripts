@@ -100,8 +100,10 @@ def getCurlInfo(url):
     c.setopt(c.URL, url)
     c.setopt(pycurl.SSL_VERIFYPEER, 0) #Set to 0 and not 1 because CERN certs are self signed
     c.setopt(pycurl.SSL_VERIFYHOST, 2)
-    c.setopt(pycurl.SSLKEY, os.environ['X509_USER_PROXY'])
-    c.setopt(pycurl.SSLCERT, os.environ['X509_USER_PROXY'])
+#    c.setopt(pycurl.SSLKEY, os.environ['X509_USER_PROXY'])
+#    c.setopt(pycurl.SSLCERT, os.environ['X509_USER_PROXY'])
+    c.setopt(pycurl.SSLCERT, os.environ['SSLCERT']) 
+    c.setopt(pycurl.SSLKEYPASSWD, os.environ['SSLKEYPASSWD'])
     c.setopt(c.WRITEDATA, buffer)
     c.perform()
     c.close()
